@@ -64,7 +64,8 @@
             // make POST ajax call
             $.ajax({
                 type: 'POST',
-                url: "{% url 'post_friend' %}",
+                url: "{% url 'friend_cbv' %}",
+                {#url: "{% url 'post_friend' %}",#}
                 data: serializedData,
                 success: function (response) {
                     // on successfull creating object
@@ -112,7 +113,8 @@
             // GET AJAX request
             $.ajax({
                 type: 'GET',
-                url: "{% url 'validate_nickname' %}",
+                {#url: "{% url 'validate_nickname' %}",#}
+                url: "{% url 'friend_cbv' %}",
                 data: {"nick_name": nick_name},
                 success: function (response) {
                     // if not valid user, alert the user
