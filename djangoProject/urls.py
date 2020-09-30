@@ -18,13 +18,13 @@ from django.urls import path
 from my_app.views import (
     # indexView,
     # postFriend, checkNickName, FriendView,
-    FriendView, checkNickName)
+    FriendView, find_by_nickname)
 
 urlpatterns = [
     # ... other urls
     path("", FriendView.as_view(), name="friend_cbv"),
     # path('', indexView),
-    path('get/ajax/validate/nickname', checkNickName, name="validate_nickname"),
+    path('get/ajax/validate/nickname', find_by_nickname, name="validate_nickname"),
     # path('post/ajax/friend', postFriend, name="post_friend"),
     # ...
 ]

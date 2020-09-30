@@ -100,6 +100,7 @@
         call AJAX get request to check if the nickName
         already exists or not.
         */
+        {# TODO: Как мне передать значение каждого поля в форму#}
         $("#id_nick_name").focusout(function (e) {
             e.preventDefault();
             // get the nickname
@@ -112,7 +113,8 @@
                 success: function (response) {
                     // if not valid user, alert the user
                     if(!response["valid"]){
-                        alert("You cannot create a friend with same nick name");
+                        alert("Я нашел данные а как мне вставить их в форму?");
+                        {#alert("You cannot create a friend with same nick name");#}
                         var nickName = $("#id_nick_name");
                         nickName.val("")
                         nickName.focus()
