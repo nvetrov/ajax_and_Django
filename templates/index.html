@@ -49,8 +49,9 @@
 
 
 {#------------------------------------------------------------POST---------------------------------------- #}
-{% block javascripts %}
-    <script>
+{% block javascript %}
+<script>
+    $(document).ready(function () {
         /*
             On submiting the form, send the POST ajax
             request to server and after successfull submission
@@ -60,12 +61,11 @@
             // preventing from page reload and default actions
             e.preventDefault();
             // serialize the data for sending the form data.
-            const serializedData = $(this).serialize();
+            var serializedData = $(this).serialize();
             // make POST ajax call
             $.ajax({
                 type: 'POST',
                 url: "{% url 'friend_cbv' %}",
-                {#url: "{% url 'post_friend' %}",#}
                 data: serializedData,
                 success: function (response) {
                     // on successfull creating object
@@ -79,13 +79,13 @@
                     var fields = instance[0]["fields"];
                     $("#my_friends tbody").prepend(
                         `<tr>
-                    <td>${fields["nick_name"] || ""}</td>
-                    <td>${fields["first_name"] || ""}</td>
-                    <td>${fields["last_name"] || ""}</td>
-                    <td>${fields["likes"] || ""}</td>
-                    <td>${fields["dob"] || ""}</td>
-                    <td>${fields["lives_in"] || ""}</td>
-                    </tr>`
+                        <td>${fields["nick_name"]||""}</td>
+                        <td>${fields["first_name"]||""}</td>
+                        <td>${fields["last_name"]||""}</td>
+                        <td>${fields["likes"]||""}</td>
+                        <td>${fields["dob"]||""}</td>
+                        <td>${fields["lives_in"]||""}</td>
+                        </tr>`
                     )
                 },
                 error: function (response) {
@@ -94,13 +94,7 @@
                 }
             })
         })
-    </script>
-{% endblock javascripts %}
 
-
-{#--------------------------------------------GET-------------------------------------- #}
-{% block javascript %}
-    <script>
         /*
         On focus out on input nickname,
         call AJAX get request to check if the nickName
@@ -109,18 +103,17 @@
         $("#id_nick_name").focusout(function (e) {
             e.preventDefault();
             // get the nickname
-            const nick_name = $(this).val();
+            var nick_name = $(this).val();
             // GET AJAX request
             $.ajax({
                 type: 'GET',
-                {#url: "{% url 'validate_nickname' %}",#}
-                url: "{% url 'friend_cbv' %}",
+                url: "{% url 'validate_nickname' %}",
                 data: {"nick_name": nick_name},
                 success: function (response) {
                     // if not valid user, alert the user
-                    if (!response["valid"]) {
+                    if(!response["valid"]){
                         alert("You cannot create a friend with same nick name");
-                        const nickName = $("#id_nick_name");
+                        var nickName = $("#id_nick_name");
                         nickName.val("")
                         nickName.focus()
                     }
@@ -130,5 +123,6 @@
                 }
             })
         })
-    </script>
+    })
+</script>
 {% endblock javascript %}
