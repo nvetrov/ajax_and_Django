@@ -101,10 +101,10 @@
         already exists or not.
         */
         {# TODO: Как мне передать значение каждого поля в форму#}
-        $("#id_nick_name").focusout(function (e) {
+        $("#id_nick_name").change(function (e) {
             e.preventDefault();
             // get the nickname
-            var nick_name = $(this).val();
+            let nick_name = $(this).val();
             // GET AJAX request
             $.ajax({
                 type: 'GET',
@@ -112,12 +112,34 @@
                 data: {"nick_name": nick_name},
                 success: function (response) {
                     // if not valid user, alert the user
-                    if(!response["valid"]){
+                    if(response["success"]){
                         alert("Я нашел данные а как мне вставить их в форму?");
                         {#alert("You cannot create a friend with same nick name");#}
-                        var nickName = $("#id_nick_name");
+                        let nickName = $("#id_nick_name");
+                        let first_name = $("#id_first_name");
+                        let last_name = $("#id_last_name");
+                        let likes = $("#id_likes");
+                        let lives_in = $("#id_lives_in");
+
+                        let instance = response["friend"];
+
+                        first_name.val(instance["first_name"])
+                        last_name.val(instance["last_name"])
+                        likes.val(instance["likes"])
+                        lives_in.val(instance["lives_in"])
+                        {#$('input[name=first_name]').val(instance["first_name"]);#}
+                        console.log(instance)
+                        console.log(instance["nick_name"])
+                        console.log(instance["first_name"])
+                        console.log(instance["last_name"])
+                        console.log(instance["likes"])
+                        {#console.log(instance["dob"])#}
+                        console.log(instance["likes"])
                         nickName.val("")
+                        {#nickName.hidden = true#}
                         nickName.focus()
+                        likes.hidden;
+
                     }
                 },
                 error: function (response) {
@@ -128,3 +150,32 @@
     })
 </script>
 {% endblock javascript %}
+{##}
+     {# TODO: Как мне передать значение каждого поля в форму#}
+{#        $("#id_nick_name").focusout(function (e) {#}
+{#            e.preventDefault();#}
+{#            // get the nickname#}
+{#            var nick_name = $(this).val();#}
+{#            // GET AJAX request#}
+{#            $.ajax({#}
+{#                type: 'GET',#}
+{#                url: "{% url 'validate_nickname' %}",#}
+{#                data: {"nick_name": nick_name},#}
+{#                success: function (response) {#}
+{#                    // if not valid user, alert the user#}
+{#                    if(!response["valid"]){#}
+{#                        alert("Я нашел данные а как мне вставить их в форму?");#}
+                        {#alert("You cannot create a friend with same nick name");#}
+{#                        var nickName = $("#id_nick_name");#}
+{#                        nickName.val("")#}
+{#                        nickName.focus()#}
+{#                    }#}
+{#                },#}
+{#                error: function (response) {#}
+{#                    console.log(response)#}
+{#                }#}
+{#            })#}
+{#        })#}
+{#    })#}
+{#</script>#}
+{#{% endblock javascript %}#}
