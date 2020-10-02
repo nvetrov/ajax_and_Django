@@ -56,5 +56,3 @@ def find_by_nickname(request):
             },
         }
         return JsonResponse(data, status=200)
-
-
