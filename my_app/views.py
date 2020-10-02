@@ -43,6 +43,7 @@ def find_by_nickname(request):
         # check for the nick name in the database.
 
         if Friend.objects.filter(nick_name=nick_name).exists():
+            # TODO: Как мне передать значения в JSON в переменную obj?
             obj = Friend.objects.filter(nick_name=nick_name).first()
             serializers.serialize('json', [obj], ensure_ascii=False)
             # if nick_name found return not valid new friend
