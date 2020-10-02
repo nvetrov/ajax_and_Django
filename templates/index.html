@@ -61,7 +61,7 @@
             // preventing from page reload and default actions
             e.preventDefault();
             // serialize the data for sending the form data.
-            var serializedData = $(this).serialize();
+            let serializedData = $(this).serialize();
             // make POST ajax call
             $.ajax({
                 type: 'POST',
@@ -100,7 +100,6 @@
         call AJAX get request to check if the nickName
         already exists or not.
         */
-        {# TODO: Как мне передать значение каждого поля в форму#}
         $("#id_nick_name").change(function (e) {
             e.preventDefault();
             // get the nickname
@@ -138,7 +137,7 @@
                         nickName.val("")
                         {#nickName.hidden = true#}
                         nickName.focus()
-                        likes.hidden;
+
 
                     }
                 },
@@ -150,32 +149,3 @@
     })
 </script>
 {% endblock javascript %}
-{##}
-     {# TODO: Как мне передать значение каждого поля в форму#}
-{#        $("#id_nick_name").focusout(function (e) {#}
-{#            e.preventDefault();#}
-{#            // get the nickname#}
-{#            var nick_name = $(this).val();#}
-{#            // GET AJAX request#}
-{#            $.ajax({#}
-{#                type: 'GET',#}
-{#                url: "{% url 'validate_nickname' %}",#}
-{#                data: {"nick_name": nick_name},#}
-{#                success: function (response) {#}
-{#                    // if not valid user, alert the user#}
-{#                    if(!response["valid"]){#}
-{#                        alert("Я нашел данные а как мне вставить их в форму?");#}
-                        {#alert("You cannot create a friend with same nick name");#}
-{#                        var nickName = $("#id_nick_name");#}
-{#                        nickName.val("")#}
-{#                        nickName.focus()#}
-{#                    }#}
-{#                },#}
-{#                error: function (response) {#}
-{#                    console.log(response)#}
-{#                }#}
-{#            })#}
-{#        })#}
-{#    })#}
-{#</script>#}
-{#{% endblock javascript %}#}

@@ -58,21 +58,3 @@ def find_by_nickname(request):
         return JsonResponse(data, status=200)
 
 
-# def find_by_nickname(request):
-#     # request should be ajax and method should be GET.
-#     if request.is_ajax and request.method == "GET":
-#         # get the nick name from the client side.
-#         nick_name = request.GET.get("nick_name", None)
-#         # check for the nick name in the database.
-#
-#         if Friend.objects.filter(nick_name=nick_name).exists():
-#             # TODO: Как мне передать значения в JSON в переменную obj?
-#             obj = Friend.objects.filter(nick_name=nick_name).first()
-#             serializers.serialize('json', [obj], ensure_ascii=False)
-#             # if nick_name found return not valid new friend
-#             return JsonResponse({"valid": False}, {"obj": [obj]}, objstatus=200)
-#         else:
-#             # if nick_name not found, then user can create a new friend.
-#             return JsonResponse({"valid": True}, status=200)
-#
-#     return JsonResponse({}, status=400)
